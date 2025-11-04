@@ -1,6 +1,6 @@
 cask "maestro" do
-  version "0.4.9"
-  sha256 "e60bffa5021a2a31e5af85d50f80846b33fa75b166cffe25707b6ef8b0cd2a9b"
+  version "0.4.10"
+  sha256 "f68c1fc6213959c1b107ded7763a869290e3b3d1e925a972db8c7c12f87f9dcb"
 
   url "https://github.com/trly/maestro/releases/download/v#{version}/Maestro.app.zip"
   name "Maestro"
