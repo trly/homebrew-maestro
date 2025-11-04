@@ -6,8 +6,12 @@ on:
 jobs:
   update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
       - name: Update cask
         run: |
           VERSION="${{ github.event.client_payload.version }}"
