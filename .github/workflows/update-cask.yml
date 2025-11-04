@@ -1,0 +1,21 @@
+name: Update Cask
+on:
+  repository_dispatch:
+    types: [maestro-release]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update cask
+        run: |
+          VERSION="${{ github.event.client_payload.version }}"
+          SHA256="${{ github.event.client_payload.sha256 }}"
+          sed -i "s/version \".*\"/version \"$VERSION\"/" Casks/maestro.rb
+          sed -i "s/sha256 \".*\"/sha256 \"$SHA256\"/" Casks/maestro.rb
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Casks/maestro.rb
+          git commit -m "maestro $VERSION" || exit 0
+          git push
