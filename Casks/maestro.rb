@@ -14,6 +14,13 @@ cask "maestro" do
 
   app "Maestro.app"
 
+  caveats do
+    <<~EOS
+      This app is not notarized. Install with:
+        brew install --cask --no-quarantine #{token}
+    EOS
+  end
+
   zap trash: [
     "~/Library/Application Support/dev.trly.maestro",
     "~/Library/Logs/dev.trly.maestro",
