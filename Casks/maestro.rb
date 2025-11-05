@@ -12,14 +12,12 @@ cask "maestro" do
     strategy :github_latest
   end
 
-  app "Maestro.app"
+  disable! date: "2025-11-05", because: <<~EOS
+    This app is not notarized. Install with:
+      brew install --cask --no-quarantine #{token}
+  EOS
 
-  caveats do
-    <<~EOS
-      This app is not notarized. Install with:
-        brew install --cask --no-quarantine #{token}
-    EOS
-  end
+  app "Maestro.app"
 
   zap trash: [
     "~/Library/Application Support/dev.trly.maestro",
